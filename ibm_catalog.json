@@ -7,19 +7,23 @@
             "tags": [
                 "terraform",
                 "storage",
-                "cos"
+                "cos",
+                "solution"
             ],
             "keywords": [
                 "cloud object storage",
                 "cos",
                 "storage",
-                "terraform"
+                "terraform",
+                "IaC",
+                "infrastructure as code"
             ],
             "short_description": "Deploy a Cloud Object Storage instance with a bucket",
-            "long_description": "This deployable architecture creates an IBM Cloud Resource Group, a Cloud Object Storage instance, and a storage bucket. It's designed as a simple, reusable pattern for object storage on IBM Cloud.",
-            "offering_docs_url": "https://github.com/sreelathas/terraform-ibm-simple-cos/blob/main/README.md",
-            "offering_icon_url": "https://raw.githubusercontent.com/IBM-Cloud/terraform-provider-ibm/master/images/cos_icon.svg",
-            "provider_name": "IBM",
+            "long_description": "This deployable architecture creates an IBM Cloud Resource Group, a Cloud Object Storage instance, and a storage bucket. It's designed as a simple, reusable pattern for object storage on IBM Cloud.\n\nThis is a simplified example for learning purposes, demonstrating how to create a basic COS deployment using Terraform.",
+            "support_details": "This product is in the community registry. Support is handled through the GitHub repository. If you experience issues, please open an issue at https://github.com/sreelathasankaranarayanan/terraform-ibm-simple-cos/issues",
+            "offering_docs_url": "https://github.com/sreelathasankaranarayanan/terraform-ibm-simple-cos/blob/main/README",
+            "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-cos/main/images/cos_icon.svg",
+            "provider_name": "Community",
             "features": [
                 {
                     "title": "Resource Group Management",
@@ -38,9 +42,23 @@
                 {
                     "label": "Standard",
                     "name": "standard",
+                    "index": 1,
+                    "install_type": "fullstack",
                     "working_directory": "solutions/standard",
+                    "release_notes_url": "https://github.com/sreelathasankaranarayanan/terraform-ibm-simple-cos/releases",
+                    "short_description": "Standard deployment with COS instance and bucket",
+                    "terraform_version": "1.9.0",
+                    "iam_permissions": [
+                        {
+                            "role_crns": [
+                                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                                "crn:v1:bluemix:public:iam::::role:Editor"
+                            ],
+                            "service_name": "cloud-object-storage",
+                            "notes": "Required to create and configure Cloud Object Storage instance and buckets"
+                        }
+                    ],
                     "architecture": {
-                        "descriptions": "Standard deployment with COS instance and bucket",
                         "features": [
                             {
                                 "title": "Resource Group",
@@ -59,7 +77,7 @@
                             {
                                 "diagram": {
                                     "caption": "Simple COS Architecture",
-                                    "url": "https://raw.githubusercontent.com/sreelathas/terraform-ibm-simple-cos/main/architecture.svg",
+                                    "url": "https://raw.githubusercontent.com/sreelathasankaranarayanan/terraform-ibm-simple-cos/main/architecture/architecture.svg",
                                     "type": "image/svg+xml"
                                 },
                                 "description": "Architecture diagram showing resource group, COS instance, and bucket"
@@ -128,28 +146,9 @@
                             ]
                         }
                     ],
-                    "outputs": [
-                        {
-                            "key": "resource_group_id",
-                            "description": "ID of the resource group"
-                        },
-                        {
-                            "key": "cos_instance_crn",
-                            "description": "CRN of the COS instance"
-                        },
-                        {
-                            "key": "cos_bucket_name",
-                            "description": "Name of the COS bucket"
-                        }
-                    ],
-                    "iam_permissions": [
-                        {
-                            "role_crns": [
-                                "crn:v1:bluemix:public:iam::::role:Editor"
-                            ],
-                            "service_name": "cloud-object-storage"
-                        }
-                    ]
+                    "dependencies": [],
+                    "dependency_version_2": true,
+                    "ignore_readme": false
                 }
             ]
         }
