@@ -1,0 +1,157 @@
+{
+    "products": [
+        {
+            "name": "terraform-ibm-simple-cos",
+            "label": "Simple Cloud Object Storage",
+            "product_kind": "solution",
+            "tags": [
+                "terraform",
+                "storage",
+                "cos"
+            ],
+            "keywords": [
+                "cloud object storage",
+                "cos",
+                "storage",
+                "terraform"
+            ],
+            "short_description": "Deploy a Cloud Object Storage instance with a bucket",
+            "long_description": "This deployable architecture creates an IBM Cloud Resource Group, a Cloud Object Storage instance, and a storage bucket. It's designed as a simple, reusable pattern for object storage on IBM Cloud.",
+            "offering_docs_url": "https://github.com/sreelathas/terraform-ibm-simple-cos/blob/main/README.md",
+            "offering_icon_url": "https://raw.githubusercontent.com/IBM-Cloud/terraform-provider-ibm/master/images/cos_icon.svg",
+            "provider_name": "IBM",
+            "features": [
+                {
+                    "title": "Resource Group Management",
+                    "description": "Creates and manages IBM Cloud resource groups"
+                },
+                {
+                    "title": "Cloud Object Storage",
+                    "description": "Provisions COS instance with configurable service plan"
+                },
+                {
+                    "title": "Storage Bucket",
+                    "description": "Creates a regional storage bucket"
+                }
+            ],
+            "flavors": [
+                {
+                    "label": "Standard",
+                    "name": "standard",
+                    "working_directory": "solutions/standard",
+                    "architecture": {
+                        "descriptions": "Standard deployment with COS instance and bucket",
+                        "features": [
+                            {
+                                "title": "Resource Group",
+                                "description": "Dedicated resource group for organization"
+                            },
+                            {
+                                "title": "COS Instance",
+                                "description": "Cloud Object Storage instance with standard plan"
+                            },
+                            {
+                                "title": "Storage Bucket",
+                                "description": "Regional storage bucket for data"
+                            }
+                        ],
+                        "diagrams": [
+                            {
+                                "diagram": {
+                                    "caption": "Simple COS Architecture",
+                                    "url": "https://raw.githubusercontent.com/sreelathas/terraform-ibm-simple-cos/main/architecture.svg",
+                                    "type": "image/svg+xml"
+                                },
+                                "description": "Architecture diagram showing resource group, COS instance, and bucket"
+                            }
+                        ]
+                    },
+                    "configuration": [
+                        {
+                            "key": "ibmcloud_api_key",
+                            "type": "password",
+                            "description": "IBM Cloud API key",
+                            "required": true
+                        },
+                        {
+                            "key": "region",
+                            "type": "string",
+                            "default_value": "us-south",
+                            "description": "IBM Cloud region",
+                            "required": false,
+                            "options": [
+                                {
+                                    "displayname": "US South",
+                                    "value": "us-south"
+                                },
+                                {
+                                    "displayname": "US East",
+                                    "value": "us-east"
+                                },
+                                {
+                                    "displayname": "EU Germany",
+                                    "value": "eu-de"
+                                },
+                                {
+                                    "displayname": "EU Great Britain",
+                                    "value": "eu-gb"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "resource_group_name",
+                            "type": "string",
+                            "description": "Name of the resource group",
+                            "required": true
+                        },
+                        {
+                            "key": "cos_instance_name",
+                            "type": "string",
+                            "description": "Name of the COS instance",
+                            "required": true
+                        },
+                        {
+                            "key": "cos_plan",
+                            "type": "string",
+                            "default_value": "standard",
+                            "description": "COS service plan",
+                            "required": false,
+                            "options": [
+                                {
+                                    "displayname": "Lite",
+                                    "value": "lite"
+                                },
+                                {
+                                    "displayname": "Standard",
+                                    "value": "standard"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "key": "resource_group_id",
+                            "description": "ID of the resource group"
+                        },
+                        {
+                            "key": "cos_instance_crn",
+                            "description": "CRN of the COS instance"
+                        },
+                        {
+                            "key": "cos_bucket_name",
+                            "description": "Name of the COS bucket"
+                        }
+                    ],
+                    "iam_permissions": [
+                        {
+                            "role_crns": [
+                                "crn:v1:bluemix:public:iam::::role:Editor"
+                            ],
+                            "service_name": "cloud-object-storage"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

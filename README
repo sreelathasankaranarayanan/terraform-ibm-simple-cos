@@ -1,0 +1,44 @@
+# IBM Cloud Simple COS Module
+
+A Terraform module to create a Cloud Object Storage instance with a bucket on IBM Cloud.
+
+## Usage
+
+```hcl
+module "simple_cos" {
+  source = "github.com/your-org/terraform-ibm-simple-cos"
+
+  ibmcloud_api_key    = var.ibmcloud_api_key
+  region              = "us-south"
+  resource_group_name = "my-resource-group"
+  cos_instance_name   = "my-cos-instance"
+  cos_plan            = "standard"
+  tags                = ["terraform", "production"]
+}
+```
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 1.9.0 |
+| ibm | >= 1.80.0, < 2.0.0 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| ibmcloud_api_key | IBM Cloud API key | `string` | n/a | yes |
+| region | IBM Cloud region | `string` | `"us-south"` | no |
+| resource_group_name | Name of the resource group | `string` | n/a | yes |
+| cos_instance_name | Name of the COS instance | `string` | n/a | yes |
+| cos_plan | Service plan for COS | `string` | `"standard"` | no |
+| tags | List of tags | `list(string)` | `[]` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| resource_group_id | ID of the resource group |
+| cos_instance_crn | CRN of the COS instance |
+| cos_bucket_name | Name of the COS bucket |
